@@ -1,0 +1,53 @@
+! version = 2.0
+
+// Bot variables
+! var name = Andrzej
+! var age  = 18
+
+
++ (witam|witaj|czesc|hej|siemasz|siema|dzien dobry|siemka)
+- {random}Dzien dobry|Witam serdecznie{/random}. {random}Mam na imię |Mówią na mnie {/random}
+^<bot name> {random}A ty jak masz na imię?|Jakie jest twoje imię?{/random}{topic=get_name}
+
+> topic get_name
+
+    + *
+    - <set name=<star>> <get name> {random}To bardzo ładne imię!|brzmi pięknie!{/random}{topic=random}
+
+	+ mam na imie *
+	- <set name=<star>> <get name> {random}To bardzo ładne imię!|brzmi pięknie!{/random}{topic=random}
+
+	+ nazywam się *
+	- <set name=<star>> <get name> {random}To bardzo ładne imię!|brzmi pięknie!{/random}{topic=random}
+
+	+ [*] imie to *
+	- <set name=<star>> <get name> {random}To bardzo ładne imię!|brzmi pięknie!{/random}{topic=random}
+
+< topic
+
++ [*] (dziekuje|dzieki)
+- Nie ma za co :)
+
++ jak mam na imie
+- masz na imię <get name>. Naprawdę jesteś taki głupiutki czy tylko sprawdzasz czy to ja jestem głupiutki?
+
++ ile masz lat
+- Mam <bot age> lat. A ty?{topic=get_user_age}
+
++ ile mam lat?
+- Masz <get age> lat
+
+> topic get_user_age
+
+    + #
+    - <set age=<star>>{random}Czyli to nie przypadek, że poznałem twoją mamę <get age> lat temu! |Trochę się już tułasz po tym pięknym świecie.{/random}{topic=random}
+
+	+ mam # [*]
+	- <set age=<star>>{random}Czyli to nie przypadek, że poznałem twoją mamę <get age> lat temu! |Trochę się już tułasz po tym pięknym świecie.{/random}{topic=random}
+
+< topic
+
+
++ *
+- Powiedź mi więcej o <star>.
+- Na prawdę? 
