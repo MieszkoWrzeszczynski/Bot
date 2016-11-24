@@ -1,0 +1,43 @@
+
+> topic sorry
+
+  + [*] (przepraszam|sory|sorry) [*]
+  - W takim razie wybaczam Ci!{topic=random}
+
+  + *
+  - Musisz mnie przeprosić!
+  - Nie przeprosiłeś mnie!
+  - Przeproś!!!
+  - Ile mam czekać na twoje przeprosiny!
+
+< topic
+
+> topic get_user_name
+
+    + *
+    * <get age> != undefined => Prędzej mówiłeś, że masz na imię <get name>! 
+    - <set name=<star>> <get name> {random}To bardzo ładne imię!|brzmi pięknie!{/random}{topic=random}
+
+	+ [*] mam na imie * 
+	- {@ <star>}
+
+	+ nazywam sie * 
+	- {@ <star>}
+
+	+ [*] imie to * 
+	- {@ <star>}
+
+
+< topic
+
+
+> topic get_user_age
+
+    + [*] # [*]
+    * <get age> != undefined  => Prędzej miałeś <get age> lat!{topic=random}
+    - <set age=<star>>{random}Czyli to nie przypadek, że poznałem twoją mamę <get age> lat temu! |Trochę się już tułasz po tym pięknym świecie.{/random}{topic=random}
+
+	+ [*] mam # [*]
+	- {@ <star>}
+
+< topic

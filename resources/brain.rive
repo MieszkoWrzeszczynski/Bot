@@ -1,14 +1,13 @@
 ! version = 2.0
 
 // Bot variables
-! var name = Andrzej
-! var surname = Trump
+! var name = andrzej
+! var surname = trump
 ! var age  = 18
 ! var master = Mieszko Wrzeszczyński
 ! var fullname = Andrzej Trump
 ! var sex      = mężczyzna
 ! var location = Poznań
-! var eyes     = piwne
 ! var job      = bot
 
 // USER INTRODUCTION
@@ -26,15 +25,15 @@
 + (jak mam na imie|jakie jest moje imie)
 - masz na imię <get name>. {random}Naprawdę jesteś taki głupiutki czy tylko sprawdzasz czy to ja jestem głupiutki?|Nie wiesz jak masz na imię?{/random}
 
-+ [*] mam lat
++ [*] mam lat [*]
 * <get age> == undefined => Jeszcze mi nie powiedziałeś ile masz lat. 
 - Masz <get age> lat.
 
-+ mam # lat
++ mam # lat [*]
 * <get age> != undefined => Prędzej mówiłeś, że urodziłeś się <get age> lat temu.
 - <set age=<star>>{random}Czyli to nie przypadek, że poznałem twoją mamę <get age> lat temu! |Trochę się już tułasz po tym pięknym świecie.{/random}{topic=random}
 
-+ mam [*] imie *
++ [*] mam na imie *
 * <get age> != undefined => Prędzej mówiłeś, że masz na imię <get name>! 
 - <set name=<star>> <get name> {random}To bardzo ładne imię!|brzmi pięknie!{/random}{topic=random}
 
@@ -44,75 +43,3 @@
 
 + klamalem
 - W takim razie musisz mnie przeprosić!{topic=sorry}
-
-// questions to bot
-
-+ [*] ile masz lat [*]
-- Mam <bot age> lat. A ty?{topic=get_user_age}
-
-+ [*] twoje imie [*]
-- Mam na imię <bot name>
-
-+ jak masz na imie
-- Mam na imię <bot name>
-
-+ [*] się nazywasz [*]
-- Mam na imię <bot surname>
-
-+ juz ci mowilem
-- Masz racje Meaculpa! 
-
-// TOPICS
-
-> topic sorry
-
-  + [*] (przepraszam|sory|sorry) [*]
-  - W takim razie wybaczam Ci!{topic=random}
-
-  + *
-  - Musisz mnie przeprosić!
-  - Nie przeprosiłeś mnie!
-  - Przeproś!!!
-  - Ile mam czekać na twoje przeprosiny!
-
-< topic
-
-> topic get_user_name
-
-    + *
-    * <get age> != undefined => Prędzej mówiłeś, że masz na imię <get name>! 
-    - <set name=<star>> <get name> {random}To bardzo ładne imię!|brzmi pięknie!{/random}{topic=random}
-
-	+ [*] mam na imie *
-	- {@ <star>}
-
-	+ nazywam sie *
-	- {@ <star>}
-
-	+ [*] imie to *
-	- {@ <star>}
-
-
-< topic
-
-
-> topic get_user_age
-
-    + #
-    - <set age=<star>>{random}Czyli to nie przypadek, że poznałem twoją mamę <get age> lat temu! |Trochę się już tułasz po tym pięknym świecie.{/random}{topic=random}
-
-	+ [*] mam # [*]
-	- {@ <star>}
-
-< topic
-
-
-+ [*] haha [*]
-- hah! Też mnie to śmieszy! 
-
-+ <reply>
-- Nie przedrzeźniaj mnie!
-
-+ *
-- Powiedź mi więcej o <star>.
-- Na prawdę? 
