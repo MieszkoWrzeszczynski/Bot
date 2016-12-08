@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Bot</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="chat.css">
+<script type="text/javascript" src="jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="datadumper.js"></script>
+<script type="text/javascript" src="rivescript.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qwest/4.4.2/qwest.min.js"></script>
+</head>
+<body>
+
+<h1>Copy of clever bot</h1>
+
+<fieldset>
+	<legend>Chat Log</legend>
+	<div id="dialogue"></div>
+</fieldset>
+
+<form onSubmit="return sendMessage()">
+	<fieldset>
+		<legend>Send a Message</legend>
+
+		<table class="input-table">
+			<tr>
+				<td class="text-box">
+					<input type="text" size="40" name="message" id="message" autocomplete="off" disabled placeholder="Please wait... loading...">
+				</td>
+				<td class="send-button">
+					<input type="submit" value="Send">
+				</td>
+			</tr>
+		</table>
+	</fieldset>
+</form>
+
+<fieldset>
+	<legend>Debugger</legend>
+
+	<input type="button" value="Debug Mode" id="toggle" onClick="toggleDebug()">
+	<input type="button" value="Clear Log" onClick="$('#debug').empty()">
+	<input type="button" value="Dump Data Structure" onClick="DumperPopup(rs)">
+
+	<div id="debug"></div>
+</fieldset>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qwest/4.4.2/qwest.min.js"></script>
+<script type="text/javascript">
+// Handle the debug mode query string parameter.
+var debugMode = false;
+const APPID = '9d3cb30f7741b980a410eee17b5f26c7';
+
+if (window.location.search.indexOf("debug=1") > -1) {
+	$("#toggle").val("Disable Debug Mode");
+	debugMode = true;
+} else {
+	$("#toggle").val("Enable Debug Mode");
+}
+
+// Create our RiveScript interpreter.
+var rs = new RiveScript({
+	debug:   debugMode,
+	onDebug: onDebug,
+	utf8: true
+});
+
+rs.unicodePunctuation = new RegExp(/[.,!?;:]/g);
+
+// Load our files from the brain/ folder.
+rs.loadFile([
+	"brain/brain.rive",
+	"brain/questions_to_bot.rive",
+	"brain/topics.rive",
+	"brain/weather.rive",
+	"brain/global.rive",
+], on_load_success, on_load_error);
+
+
+rs.setSubroutine("weather",function(rs,args){
+	var weather_location = args.join(' ')
+
+	var url = "http://api.openweathermap.org/data/2.5/weather?q="+weather_location+"&lang=pl&APPID=9d3cb30f7741b980a410eee17b5f26c7"
+
+	return new rs.Promise(function (resolve, reject) {
+		qwest.get(url, {}, {
+	        dataType: 'json',
+	        cache: true,
+	    })
+	    .then(function(xhr, data) {
+	    	resolve( JSON.stringify(data['weather'][0]['description']))
+	    })
+	});
+});
+
+
+rs.setSubroutine("temp",function(rs,args){
+	var weather_location = args.join(' ')
+
+	var url = "http://api.openweathermap.org/data/2.5/weather?q="+weather_location+"&lang=pl&APPID=9d3cb30f7741b980a410eee17b5f26c7"
+
+	return new rs.Promise(function (resolve, reject) {
+		qwest.get(url, {}, {
+	        dataType: 'json',
+	        cache: true,
+	    })
+	    .then(function(xhr, data) {
+	    	resolve(JSON.stringify(data))
+	    })
+	});
+});
+
+
+function removeDiactrics(str) {
+
+    var plDict = {
+	    'ą' : 'a',
+	    'ę' : 'e',
+	    'ć' : 'c',
+	    'ł' : 'l',
+	    'ń' : 'n',
+	    'ó' : 'o',
+	    'ś' : 's',
+	    'ź' : 'z',
+	    'ż' : 'z'
+	}
+
+
+    for (var i in plDict) {
+        str = str.replace(new RegExp(i, "g"), plDict[i]);
+    }
+
+    return str;
+}
+
+function on_load_success () {
+	$("#message").removeAttr("disabled");
+	$("#message").attr("placeholder", "Send message");
+	$("#message").focus();
+
+	// Now to sort the replies!
+	rs.sortReplies();
+}
+
+function on_load_error (err) {
+	console.log("Loading error: " + err);
+}
+
+// Handle sending a message to the bot.
+function sendMessage (text) {
+
+	var text = $("#message").val();
+
+	$("#message").val("");
+	$("#dialogue").append("<div><span class='user'>Ty:</span> " + text + "</div>");
+
+	text = removeDiactrics(text);
+
+	try {
+
+		rs.replyAsync("soandso", text, this).then(function(reply) {
+		  	$("#dialogue").append("<div><span class='bot'>WeatherBot: </span>" + reply + "</div>");
+		});
+
+	$("#dialogue").animate({ scrollTop: $("#dialogue").height() }, 1000);
+	} catch(e) {
+		window.alert(e.message + "\n" + e.line);
+		console.log(e);
+	}
+
+	return false;
+}
+
+// Button that turns debugging on and off.
+function toggleDebug () {
+	if (debugMode) {
+		window.location = "?debug=0";
+	} else {
+		window.location = "?debug=1";
+	}
+}
+
+function onDebug(message) {
+	if (debugMode) {
+		$("#debug").append("<div>[RS] " + escapeHtml(message) + "</div>");
+	}
+}
+
+function escapeHtml(text) {
+	return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
+</script>
+
+</body>
+</html>

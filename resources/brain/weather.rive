@@ -1,0 +1,21 @@
+// TEMP
++ [*] (temperature|temperatury|temperatura|temperaturze) [*] w *
+- Temperatura w <star2> wynosi: <call>temp <star2> </call> C
+
++ [*] stopni w *
+- Temperatura w <star1> wynosi: <call>temp <star1> </call> C
+
+// PRESSURE
++ [*] (cisnienie|cisnienia) [*] w *
+- Aktualne ciśnienie w <star2> wynosi: <call>pressure <star2> </call> hPa
+
+//WEATHER
++ [*] (pogoda|pogode|pogodowe) [*] w *
+- Aktualna pogoda w <star2>: <call>weather <star2> </call>
+
+//CLOUDS
++ [*] (zachmurzenie|chmury|pochmurnie) [*] w *
+- Aktualne zachmurzenie w <star2> wynosi: <call>clouds <star2> </call>%
+
++ [*] w * [*] (zachmurzenie|chmury|pochmurnie)
+- Aktualne zachmurzenie w <star1> wynosi: <call>clouds <star1> </call>%
