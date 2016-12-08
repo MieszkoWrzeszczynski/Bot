@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Bot</title>
+<title>WeatherBot</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" type="text/css" href="chat.css">
-<script type="text/javascript" src="jquery-1.7.2.min.js"></script>
-<script type="text/javascript" src="datadumper.js"></script>
-<script type="text/javascript" src="rivescript.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qwest/4.4.2/qwest.min.js"></script>
+<link rel="stylesheet" type="text/css" href="build/css/chat.css">
+<script type="text/javascript" src="build/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="build/js/datadumper.js"></script>
+<script type="text/javascript" src="build/js/rivescript.js"></script>
 </head>
 <body>
 
-<h1>Copy of clever bot</h1>
+<h1>WeatherBot</h1>
 
 <fieldset>
 	<legend>Chat Log</legend>
@@ -71,11 +70,11 @@ rs.unicodePunctuation = new RegExp(/[.,!?;:]/g);
 
 // Load our files from the brain/ folder.
 rs.loadFile([
-	"brain/brain.rive",
-	"brain/questions_to_bot.rive",
-	"brain/topics.rive",
-	"brain/weather.rive",
-	"brain/global.rive",
+	"resources/brain/brain.rive",
+	"resources/brain/questions_to_bot.rive",
+	"resources/brain/topics.rive",
+	"resources/brain/weather.rive",
+	"resources/brain/global.rive",
 ], on_load_success, on_load_error);
 
 
