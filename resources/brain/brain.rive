@@ -14,7 +14,7 @@
 
 + (witam|witaj|czesc|hej|hejka|heja|siemasz|siema|siemanko|dzien dobry|siemka|siemson) [*]
 - {random}Dzień dobry|Witam serdecznie{/random}. {random}Wołają na mnie |Mówią na mnie {/random}
-^<bot name> <bot surname>. {random}A ty jak masz na imię?|Jakie jest twoje imię?{/random}{topic=get_user_name}
+^<bot name> <bot surname>. {random}A ty jak masz na imię?|Jakie jest twoje imię?{/random}
 
 + (dziekuje|dzieki) [*]
 - Nie ma za co :) Ile masz lat?{topic=get_user_age}

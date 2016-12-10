@@ -1,21 +1,46 @@
 // TEMP
 + [*] (temperature|temperatury|temperatura|temperaturze) [*] w *
-- Temperatura w <star2> wynosi: <call>temp <star2> </call> C
+- Temperatura w <star2> wynosi: <call>temp <star2> </call> {topic=temperature}
 
 + [*] stopni w *
-- Temperatura w <star1> wynosi: <call>temp <star1> </call> C
+- Temperatura w <star1> wynosi: <call>temp <star1> </call> {topic=temperature}
+
++ temp *
+- Temperatura w <star1> wynosi: <call>temp <star1> </call> {topic=temperature}
+
++ czy w * jest (cieplo|zimno) 
+- Temperatura w <star1> wynosi: <call>temp <star1> </call> {topic=temperature}
 
 // PRESSURE
 + [*] (cisnienie|cisnienia) [*] w *
 - Aktualne ciśnienie w <star2> wynosi: <call>pressure <star2> </call> hPa
 
+// PRESSURE
++ czy w * jest (wysokie|niskie) [*] 
+- Aktualne ciśnienie w <star1> wynosi: <call>pressure <star1> </call> hPa
+
++ pressure *
+- Aktualne ciśnienie w <star1> wynosi: <call>pressure <star1> </call> hPa
+
 //WEATHER
 + [*] (pogoda|pogode|pogodowe) [*] w *
 - Aktualna pogoda w <star2>: <call>weather <star2> </call>
 
++ pogoda *
+- Aktualna pogoda w <star1>: <call>weather <star1> </call>
+
 //CLOUDS
-+ [*] (zachmurzenie|chmury|pochmurnie) [*] w *
++ [*] (zachmurzenie|chmury|pochmurnie|pochmurno) [*] w *
 - Aktualne zachmurzenie w <star2> wynosi: <call>clouds <star2> </call>%
 
-+ [*] w * [*] (zachmurzenie|chmury|pochmurnie)
++ [*] (chmura|chmur|chmurach|chmurami|chmurą|chmurę|chmuro|chmurom|chmury|chmurze) [*] w *
+- Aktualne zachmurzenie w <star1> wynosi: <call>clouds <star1> </call>%
+
++ [*] (zachmurzenie|zachmurzenia|zachmurzeniach|zachmurzeniami|zachmurzeniem|zachmurzeniom|zachmurzeniu|zachmurzeń|zachmurzyć|niezachmurzeni|niezachmurzenia|niezachmurzeniach|niezachmurzeniami|niezachmurzenie|niezachmurzeniem|niezachmurzeniom|niezachmurzeniu|niezachmurzeń|niezachmurzona|niezachmurzoną|niezachmurzone|niezachmurzonego|niezachmurzonej|niezachmurzonemu|niezachmurzony|niezachmurzonych|niezachmurzonym|niezachmurzonymi|zachmurz|zachmurzą|zachmurzcie|zachmurzcież|zachmurzeni|zachmurzenia|zachmurzeniach|zachmurzeniami|zachmurzenie|zachmurzeniem|zachmurzeniom|zachmurzeniu|zachmurzeń|zachmurzę|zachmurzmy|zachmurzmyż|zachmurzona|zachmurzoną|zachmurzone|zachmurzonego|zachmurzonej|zachmurzonemu|zachmurzono|zachmurzony|zachmurzonych|zachmurzonym|zachmurzonymi|zachmurzy|zachmurzycie|zachmurzyli|zachmurzyliby|zachmurzylibyście|zachmurzylibyśmy|zachmurzyliście|zachmurzyliśmy|zachmurzył|zachmurzyła|zachmurzyłaby|zachmurzyłabym|zachmurzyłabyś|zachmurzyłam|zachmurzyłaś|zachmurzyłby|zachmurzyłbym|zachmurzyłbyś|zachmurzyłem|zachmurzyłeś|zachmurzyło|zachmurzyłoby|zachmurzyły|zachmurzyłyby|zachmurzyłybyście|zachmurzyłybyśmy|zachmurzyłyście|zachmurzyłyśmy|zachmurzymy|zachmurzysz|zachmurzywszy|zachmurzże) [*] w *
+- Aktualne zachmurzenie w <star1> wynosi: <call>clouds <star1> </call>%
+
++ czy w * jest (zachmurzenie|chmury|pochmurnie|pochmurno) [*]
+- Aktualne zachmurzenie w <star1> wynosi: <call>clouds <star1> </call>%
+
++ chmury *
 - Aktualne zachmurzenie w <star1> wynosi: <call>clouds <star1> </call>%

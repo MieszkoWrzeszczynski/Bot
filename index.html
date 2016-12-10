@@ -4,192 +4,87 @@
 <title>WeatherBot</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css" href="build/css/chat.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&amp;subset=latin-ext" rel="stylesheet"> 
+</head>
+<body>
+	<header>
+			<img src="build/img/logo.png" alt="Weatherbot logo">
+			<h1>WeatherBot</h1>
+	</header>
+
+<main>
+	<fieldset>
+		<legend>Chat</legend>
+		<div id="dialogue">
+				<strong class='bot'>WeatherBot: </strong>Heja! Jestem botem pogodowym. Powiem ci wszystko o pogodzie! Spróbuj mnie spytać jaka jest pogoda w Poznaniu!</div>
+		</div>
+	</fieldset>
+	<form onSubmit="return sendMessage()">
+		<input type="text" name="message" id="message" placeholder="send a message" required>
+		<button type="submit">Send!</button>
+	</form>
+</main>
+
 <script type="text/javascript" src="build/js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="build/js/datadumper.js"></script>
 <script type="text/javascript" src="build/js/rivescript.js"></script>
-</head>
-<body>
-
-<h1>WeatherBot</h1>
-
-<fieldset>
-	<legend>Chat Log</legend>
-	<div id="dialogue"></div>
-</fieldset>
-
-<form onSubmit="return sendMessage()">
-	<fieldset>
-		<legend>Send a Message</legend>
-
-		<table class="input-table">
-			<tr>
-				<td class="text-box">
-					<input type="text" size="40" name="message" id="message" autocomplete="off" disabled placeholder="Please wait... loading...">
-				</td>
-				<td class="send-button">
-					<input type="submit" value="Send">
-				</td>
-			</tr>
-		</table>
-	</fieldset>
-</form>
-
-<fieldset>
-	<legend>Debugger</legend>
-
-	<input type="button" value="Debug Mode" id="toggle" onClick="toggleDebug()">
-	<input type="button" value="Clear Log" onClick="$('#debug').empty()">
-	<input type="button" value="Dump Data Structure" onClick="DumperPopup(rs)">
-
-	<div id="debug"></div>
-</fieldset>
-
-
-
+<script type="text/javascript" src="build/js/bot.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qwest/4.4.2/qwest.min.js"></script>
 <script type="text/javascript">
-// Handle the debug mode query string parameter.
-var debugMode = false;
-const APPID = '9d3cb30f7741b980a410eee17b5f26c7';
 
-if (window.location.search.indexOf("debug=1") > -1) {
-	$("#toggle").val("Disable Debug Mode");
-	debugMode = true;
-} else {
-	$("#toggle").val("Enable Debug Mode");
-}
+var logs = [];
 
-// Create our RiveScript interpreter.
-var rs = new RiveScript({
-	debug:   debugMode,
-	onDebug: onDebug,
-	utf8: true
-});
-
-rs.unicodePunctuation = new RegExp(/[.,!?;:]/g);
-
-// Load our files from the brain/ folder.
-rs.loadFile([
-	"resources/brain/brain.rive",
-	"resources/brain/questions_to_bot.rive",
-	"resources/brain/topics.rive",
-	"resources/brain/weather.rive",
-	"resources/brain/global.rive",
-], on_load_success, on_load_error);
-
-
-rs.setSubroutine("weather",function(rs,args){
-	var weather_location = args.join(' ')
-
-	var url = "http://api.openweathermap.org/data/2.5/weather?q="+weather_location+"&lang=pl&APPID=9d3cb30f7741b980a410eee17b5f26c7"
-
-	return new rs.Promise(function (resolve, reject) {
-		qwest.get(url, {}, {
-	        dataType: 'json',
-	        cache: true,
-	    })
-	    .then(function(xhr, data) {
-	    	resolve( JSON.stringify(data['weather'][0]['description']))
-	    })
-	});
-});
-
-
-rs.setSubroutine("temp",function(rs,args){
-	var weather_location = args.join(' ')
-
-	var url = "http://api.openweathermap.org/data/2.5/weather?q="+weather_location+"&lang=pl&APPID=9d3cb30f7741b980a410eee17b5f26c7"
-
-	return new rs.Promise(function (resolve, reject) {
-		qwest.get(url, {}, {
-	        dataType: 'json',
-	        cache: true,
-	    })
-	    .then(function(xhr, data) {
-	    	resolve(JSON.stringify(data))
-	    })
-	});
-});
-
-
-function removeDiactrics(str) {
-
-    var plDict = {
-	    'ą' : 'a',
-	    'ę' : 'e',
-	    'ć' : 'c',
-	    'ł' : 'l',
-	    'ń' : 'n',
-	    'ó' : 'o',
-	    'ś' : 's',
-	    'ź' : 'z',
-	    'ż' : 'z'
-	}
-
-
-    for (var i in plDict) {
-        str = str.replace(new RegExp(i, "g"), plDict[i]);
-    }
-
-    return str;
-}
-
-function on_load_success () {
-	$("#message").removeAttr("disabled");
-	$("#message").attr("placeholder", "Send message");
-	$("#message").focus();
-
-	// Now to sort the replies!
-	rs.sortReplies();
-}
-
-function on_load_error (err) {
-	console.log("Loading error: " + err);
-}
-
-// Handle sending a message to the bot.
 function sendMessage (text) {
-
 	var text = $("#message").val();
+	text = removeDiactrics(text);
 
 	$("#message").val("");
-	$("#dialogue").append("<div><span class='user'>Ty:</span> " + text + "</div>");
-
-	text = removeDiactrics(text);
+	$("#dialogue").append("<div class='chat_msg'><strong class='user'>Ty:</strong> " + text + "</div>");
 
 	try {
 
 		rs.replyAsync("soandso", text, this).then(function(reply) {
-		  	$("#dialogue").append("<div><span class='bot'>WeatherBot: </span>" + reply + "</div>");
+			$("#dialogue").append("<div class='chat_msg'><strong class='bot'>WeatherBot: </strong>" + reply + "</div>");
+
+		    $('#dialogue').scrollTop($('#dialogue')[0].scrollHeight);
+			logs.append({log:{user:text,bot:reply}})
+	
+			
 		});
 
-	$("#dialogue").animate({ scrollTop: $("#dialogue").height() }, 1000);
+			
 	} catch(e) {
-		window.alert(e.message + "\n" + e.line);
 		console.log(e);
 	}
 
+
+
 	return false;
-}
-
-// Button that turns debugging on and off.
-function toggleDebug () {
-	if (debugMode) {
-		window.location = "?debug=0";
-	} else {
-		window.location = "?debug=1";
-	}
-}
-
-function onDebug(message) {
-	if (debugMode) {
-		$("#debug").append("<div>[RS] " + escapeHtml(message) + "</div>");
-	}
 }
 
 function escapeHtml(text) {
 	return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
+
+
+
+function savelogs(log) {
+			console.log(log);
+ 		qwest.post("http://www.mieszkowrzeszczynski.pl/bot/log.php", {data:log}, {
+            cache: true
+        })
+        .then(function(xhr, response) {
+       		console.log("send a log");
+            
+        })
+        .catch(function(e, xhr, response) {
+            console.log("POST Error:" + e);
+        });
+	    
+}
+window.addEventListener('beforeunload', function(){
+	savelogs(logs)
+});
 
 </script>
 

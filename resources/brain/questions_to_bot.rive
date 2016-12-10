@@ -12,17 +12,13 @@
 + [*] sie nazywasz [*]
 - Mam na imię <bot surname>
 
-+ juz ci mowilem
++ [*] juz ci mowilem [*]
 - Masz racje Meaculpa! 
 
++ [*] cie (stworzyl|wykonal|zrobil) [*]
+- Masz racje Meaculpa! <bot master>
 + <bot name>
 - Tak słucham :) 
 
 + kim jestes
-- Jestem botem. Mieszka w <bot location>.
-
-+ tak
-- nie!
-
-+ nie
-- tak!!!
+- Jestem botem. Mieszkam w <bot location>.

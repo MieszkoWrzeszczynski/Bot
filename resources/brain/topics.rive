@@ -37,7 +37,14 @@
     * <get age> != undefined  => Prędzej miałeś <get age> lat!{topic=random}
     - <set age=<star>>{random}Czyli to nie przypadek, że poznałem twoją mamę <get age> lat temu! |Trochę się już tułasz po tym pięknym świecie.{/random}{topic=random}
 
-	+ [*] mam # [*]
-	- {@ <star>}
+	  + [*] mam # [*]
+	  - {@ <star>}
+
+< topic
+
+> topic temperature
+
+    + a [*] w * [*]
+    - Temperatura w <star1> wynosi: <call>temp <star1> </call>{topic=random}
 
 < topic
