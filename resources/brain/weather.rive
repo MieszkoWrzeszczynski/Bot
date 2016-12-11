@@ -1,15 +1,15 @@
 // TEMP
 + [*] (temperature|temperatury|temperatura|temperaturze) [*] w *
-- Temperatura w <star2> wynosi: <call>temp <star2> </call> {topic=temperature}
+- Temperatura w <star2> wynosi: <call>temp <star2> </call> 
 
 + [*] stopni w *
-- Temperatura w <star1> wynosi: <call>temp <star1> </call> {topic=temperature}
+- Temperatura w <star1> wynosi: <call>temp <star1> </call> 
 
 + temp *
-- Temperatura w <star1> wynosi: <call>temp <star1> </call> {topic=temperature}
+- Temperatura w <star1> wynosi: <call>temp <star1> </call> 
 
 + czy w * jest (cieplo|zimno) 
-- Temperatura w <star1> wynosi: <call>temp <star1> </call> {topic=temperature}
+- Temperatura w <star1> wynosi: <call>temp <star1> </call> 
 
 // PRESSURE
 + [*] (cisnienie|cisnienia) [*] w *

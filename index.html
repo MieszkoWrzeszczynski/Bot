@@ -6,6 +6,7 @@
 <link rel="stylesheet" type="text/css" href="build/css/chat.css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&amp;subset=latin-ext" rel="stylesheet"> 
+<link rel="stylesheet" type="text/css" href="build/css/sweetalert.css">
 </head>
 <body>
 	<header>
@@ -13,96 +14,27 @@
 			<h1>WeatherBot</h1>
 	</header>
 
-<main>
-	<fieldset>
-		<legend>Chat</legend>
-		<div id="dialogue">
-				<strong class='bot'>WeatherBot: </strong>Heja! Jestem botem pogodowym. Powiem ci wszystko o pogodzie! Spróbuj mnie spytać jaka jest pogoda w Poznaniu!</div>
-		</div>
-	</fieldset>
-	<form id="form" onsubmit="return false;">
-		<input type="text" name="message" id="message" placeholder="send a message" required>
-		<button type="submit">Send!</button>
-	</form>
-</main>
-
-<script type="text/javascript" src="build/js/jquery-1.7.2.min.js"></script>
-<script type="text/javascript" src="build/js/datadumper.js"></script>
-<script type="text/javascript" src="build/js/rivescript.js"></script>
-<script type="text/javascript" src="build/js/bot.js"></script>
+	<main>
+		<fieldset>
+			<legend>Chat</legend>
+			<div id="dialogue">
+					<strong class='bot'>WeatherBot: </strong>Heja! Jestem botem pogodowym. Powiem ci wszystko o pogodzie! Spróbuj mnie spytać jaka jest pogoda w Poznaniu!</div>
+			</div>
+		</fieldset>
+		<form id="form" onsubmit="return false;">
+			<input type="text" name="message" id="message" placeholder="Jaka jest pogoda w ..." required>
+			<button type="submit">Send!</button>
+		</form>
+		<form onsubmit="return false;">
+			<button id="save-logs">Zapisz logi!</button>
+		</form>
+	</main>
+	
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qwest/4.4.2/qwest.min.js"></script>
-<script type="text/javascript">
-var form = document.getElementById("form");
-
-function sendMessage () {
-	var text = $("#message").val();
-	text = removeDiactrics(text);
-
-	$("#message").val("");
-	$("#dialogue").append("<div class='chat_msg'><strong class='user'>Ty:</strong> " + text + "</div>");
-
-	try {
-		rs.replyAsync("soandso", text, this).then(function(reply) {
-			$("#dialogue").append("<div class='chat_msg'><strong class='bot'>WeatherBot: </strong>" + reply + "</div>");
-
-		    $('#dialogue').scrollTop($('#dialogue')[0].scrollHeight);
-		});
-
-			
-	} catch(e) {
-		console.log(e);
-	}
-
-	return false;
-}
-
-function escapeHtml(text) {
-	return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-}
-
-
-function savelogs(log) {
-
-		qwest.post("http://www.mieszkowrzeszczynski.pl/bot/log.php",{ data: log }, {
-            cache: true,
-            dataType: 'json'
-        })
-        .then(function(xhr, response) {
-       		console.log("send a log");
-            
-        })
-        .catch(function(e, xhr, response) {
-            console.log("POST Error:" + e);
-        });
-	    
-}
-
-window.addEventListener('beforeunload', function(){
-	savelogs(getLogData())
-});
-
-function getLogData(){
-	var log = {
-	    messages: []
-	};
-
-	var dialogue = document.getElementById("dialogue");
-	var children = dialogue.children;
-
-	for (var i = 0; i < children.length; i++) {
-		log.messages.push({
-			"text" : children[i].textContent
-		})
-	} 
-
-	return log;
-}
-
-form.addEventListener('submit', function(){
-	sendMessage();
-	return false;
-});
-</script>
-
+<script src="build/js/jquery-1.7.2.min.js"></script>
+<script src="build/js/datadumper.js"></script>
+<script src="build/js/rivescript.js"></script>
+<script src="build/js/bot.js"></script>
+<script src="build/js/sweetalert.min.js"></script>
 </body>
 </html>

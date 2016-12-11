@@ -4,7 +4,6 @@ const url_end = "&lang=pl&APPID=9d3cb30f7741b980a410eee17b5f26c7&units=metric";
 // Create our RiveScript interpreter.
 let rs = new RiveScript({
 	debug:   false,
-	onDebug: onDebug,
 	utf8: true
 });
 
@@ -102,3 +101,92 @@ function removeDiactrics(str) {
 
     return str;
 }
+
+var form = document.getElementById("form");
+
+function sendMessage () {
+	var text = $("#message").val();
+	text = removeDiactrics(text);
+
+	$("#message").val("");
+	$("#dialogue").append("<div class='chat_msg'><strong class='user'>Ty:</strong> " + text + "</div>");
+
+	try {
+		rs.replyAsync("soandso", text, this).then(function(reply) {
+			$("#dialogue").append("<div class='chat_msg'><strong class='bot'>WeatherBot: </strong>" + reply + "</div>");
+
+		    $('#dialogue').scrollTop($('#dialogue')[0].scrollHeight);
+		});
+
+			
+	} catch(e) {
+		console.log(e);
+	}
+
+	return false;
+}
+
+function escapeHtml(text) {
+	return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
+
+function savelogs(log) {
+
+		qwest.post("http://www.mieszkowrzeszczynski.pl/bot/log.php",{ data: log }, {
+            cache: true,
+            dataType: 'json'
+        })
+        .then(function(xhr, response) {
+       		console.log("send a log");
+            
+        })
+        .catch(function(e, xhr, response) {
+            console.log("POST Error:" + e);
+        });
+	    
+}
+
+//not working on firefox
+window.addEventListener('beforeunload', function(){
+	//savelogs(getLogData())
+},false);
+
+
+
+function getLogData(){
+	var log = {
+	    messages: []
+	};
+
+	var dialogue = document.getElementById("dialogue");
+	var children = dialogue.children;
+
+	for (var i = 0; i < children.length; i++) {
+		log.messages.push({
+			"text" : children[i].textContent
+		})
+	} 
+
+	return log;
+}
+
+form.addEventListener('submit', function(){
+	sendMessage();
+	return false;
+});
+
+
+var saveLogButton = document.getElementById("save-logs");
+saveLogButton.addEventListener('click',function(){
+	savelogs(getLogData())
+	swal({
+	  title: "Logi zostały zapisane!",
+	  text: "Dzięki :)",
+	  type: "success",
+	  timer: 2000,
+  	  showConfirmButton: false
+	});
+});
+
+	
