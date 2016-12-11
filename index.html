@@ -4,6 +4,7 @@
 <title>WeatherBot</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css" href="build/css/chat.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&amp;subset=latin-ext" rel="stylesheet"> 
 </head>
 <body>
@@ -19,7 +20,7 @@
 				<strong class='bot'>WeatherBot: </strong>Heja! Jestem botem pogodowym. Powiem ci wszystko o pogodzie! Spróbuj mnie spytać jaka jest pogoda w Poznaniu!</div>
 		</div>
 	</fieldset>
-	<form onSubmit="return sendMessage()">
+	<form id="form" onsubmit="return false;">
 		<input type="text" name="message" id="message" placeholder="send a message" required>
 		<button type="submit">Send!</button>
 	</form>
@@ -31,10 +32,9 @@
 <script type="text/javascript" src="build/js/bot.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qwest/4.4.2/qwest.min.js"></script>
 <script type="text/javascript">
+var form = document.getElementById("form");
 
-var logs = [];
-
-function sendMessage (text) {
+function sendMessage () {
 	var text = $("#message").val();
 	text = removeDiactrics(text);
 
@@ -42,22 +42,16 @@ function sendMessage (text) {
 	$("#dialogue").append("<div class='chat_msg'><strong class='user'>Ty:</strong> " + text + "</div>");
 
 	try {
-
 		rs.replyAsync("soandso", text, this).then(function(reply) {
 			$("#dialogue").append("<div class='chat_msg'><strong class='bot'>WeatherBot: </strong>" + reply + "</div>");
 
 		    $('#dialogue').scrollTop($('#dialogue')[0].scrollHeight);
-			logs.append({log:{user:text,bot:reply}})
-	
-			
 		});
 
 			
 	} catch(e) {
 		console.log(e);
 	}
-
-
 
 	return false;
 }
@@ -67,11 +61,11 @@ function escapeHtml(text) {
 }
 
 
-
 function savelogs(log) {
-			console.log(log);
- 		qwest.post("http://www.mieszkowrzeszczynski.pl/bot/log.php", {data:log}, {
-            cache: true
+
+		qwest.post("http://www.mieszkowrzeszczynski.pl/bot/log.php",{ data: log }, {
+            cache: true,
+            dataType: 'json'
         })
         .then(function(xhr, response) {
        		console.log("send a log");
@@ -82,10 +76,32 @@ function savelogs(log) {
         });
 	    
 }
+
 window.addEventListener('beforeunload', function(){
-	savelogs(logs)
+	savelogs(getLogData())
 });
 
+function getLogData(){
+	var log = {
+	    messages: []
+	};
+
+	var dialogue = document.getElementById("dialogue");
+	var children = dialogue.children;
+
+	for (var i = 0; i < children.length; i++) {
+		log.messages.push({
+			"text" : children[i].textContent
+		})
+	} 
+
+	return log;
+}
+
+form.addEventListener('submit', function(){
+	sendMessage();
+	return false;
+});
 </script>
 
 </body>

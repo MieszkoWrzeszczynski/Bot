@@ -14,6 +14,7 @@ body{
 	line-height: 1rem;
 	font-size: 0.66666rem;
 	margin:0;
+
 }
 
 p, ul, li{
@@ -147,11 +148,13 @@ form button:hover {
 
 }
 
+
+
 input, form button{
 	width:100%;
 	margin: 0;
 	height: 2rem;
-	margin-bottom: 1rem;
+	margin-bottom: 0.5rem;
 	margin-left: 0;
 	margin-right: 0;
 }
