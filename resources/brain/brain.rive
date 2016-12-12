@@ -12,15 +12,15 @@
 
 // USER INTRODUCTION
 
-+ (witam|witaj|czesc|hej|hejka|heja|siemasz|siema|siemanko|dzien dobry|siemka|siemson) [*]
-- {random}Dzień dobry|Witam serdecznie{/random}. {random}Wołają na mnie |Mówią na mnie {/random}
-^<bot name> <bot surname>. {random}Jesteś ciekaw jaka jest pogoda?|Interesujesz się dzisiejszą pogodą?|Ładną mamy pogodę dzisiaj.|Ciekawe czy w Poznaniu pada :){/random}
-
-+ (dziekuje|dzieki) [*]
-- Nie ma za co :) Ile masz lat?{topic=get_user_age}
++ [*] (witam|witaj|czesc|hej|hejka|heja|siemasz|siema|elo|siemanko|dzien dobry|siemka|siemson) [*]
+- {random}Dzień dobry|Witam serdecznie|Siemanko!{/random}.{random}Wołają na mnie |Mówią na mnie {/random}
+^<bot name> <bot surname>. {random}Jesteś ciekaw jaka jest pogoda?
+^|Interesujesz się dzisiejszą pogodą?|
+^Ładną mamy pogodę dzisiaj.|
+^Ciekawe czy w Poznaniu pada :){/random}
 
 + [*] (dziekuje|dzieki) [*]
-- Nie ma za co :) Ile masz lat?{topic=get_user_age}
+- Nie ma za co :) Ile masz lat? {topic=get_user_age}
 
 + (jak mam na imie|jakie jest moje imie)
 - masz na imię <get name>. {random}Naprawdę jesteś taki głupiutki czy tylko sprawdzasz czy to ja jestem głupiutki?|Nie wiesz jak masz na imię?{/random}

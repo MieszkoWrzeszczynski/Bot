@@ -11,10 +11,10 @@ rs.unicodePunctuation = new RegExp(/[.,!?;:]/g);
 
 rs.loadFile([
 	"resources/brain/brain.rive",
+	"resources/brain/global.rive",
 	"resources/brain/questions_to_bot.rive",
 	"resources/brain/topics.rive",
 	"resources/brain/weather.rive",
-	"resources/brain/global.rive",
 ], on_load_success, on_load_error);
 
 
@@ -42,6 +42,38 @@ var getWeather = function(location,result){
 	    })
 	});
 }
+
+function listComparable(first,second){
+
+	var i = 0;
+	
+	for(i; i < first.length; i++){
+		if(second.indexOf(first[i]) >= 0){
+			return true;
+		}
+	}
+
+	return false;
+
+}
+
+rs.setSubroutine("input_temp",function(rs,args){
+	keys = ["temperature","temperatury","temperatura","temperaturze"]
+	return listComparable(keys,args[0].split(" "))
+});
+
+rs.setSubroutine("input_weather",function(rs,args){
+	keys = ["pogoda","pogode","pogodowe","pogodnie"]
+	return listComparable(keys,args[0].split(" "))
+});
+
+rs.setSubroutine("input_clouds",function(rs,args){
+	keys = ["zachmurzenie","chmury","pochmurnie","pochmurno","chmurami"]
+	listComparable(keys,args[0].split(" "))
+});
+
+
+
 
 // clouds query
 rs.setSubroutine("clouds",function(rs,args){
@@ -75,9 +107,8 @@ function on_load_error (err) {
 }
 
 function onDebug(message) {
-	if (debugMode) {
-		$("#debug").append("<div>[RS] " + escapeHtml(message) + "</div>");
-	}
+
+	console.log(message);
 }
 
 

@@ -1,4 +1,4 @@
-// questions to bot
+! version = 2.0
 
 + [*] ile masz lat [*]
 - Mam <bot age> lat. A ty?{topic=get_user_age}
@@ -12,13 +12,22 @@
 + [*] sie nazywasz [*]
 - Mam na imię <bot surname>
 
-+ [*] juz ci mowilem [*]
++ [*] (ci mowilem|pytales sie|pytales) [*]
 - Masz racje Meaculpa! 
+- No w sumie racja. Przepraszam za błąd.
+- No tak. Sorki :)
 
 + [*] cie (stworzyl|wykonal|zrobil) [*]
-- Masz racje Meaculpa! <bot master>
+- <bot master> jest moim twórcą.
+
 + <bot name>
 - Tak słucham :) 
+- Tak? Czekam na pytania.
 
 + kim jestes
 - Jestem botem. Mieszkam w <bot location>.
+- Rozmawiam z ludzmi o pogodzie :)
+- Informuje ludzi o pogodzie.
+
++ skad to wiesz
+- <bot master> zaimplementował Open Weather Api w moim mózgu :)

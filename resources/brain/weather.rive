@@ -1,46 +1,72 @@
+! version = 2.0
 // TEMP
-+ [*] (temperature|temperatury|temperatura|temperaturze) [*] w *
++ [*] (temperature|temperatury|temperatura|temperaturze) [*] (w|na) *
+- Temperatura w <star3> wynosi: <call>temp <star3> </call> 
+
++ [*] stopni [*] (w|na) *
 - Temperatura w <star2> wynosi: <call>temp <star2> </call> 
 
-+ [*] stopni w *
++ temperatura  (w|na) *
 - Temperatura w <star1> wynosi: <call>temp <star1> </call> 
 
-+ temp *
-- Temperatura w <star1> wynosi: <call>temp <star1> </call> 
++ czy (w|na) * jest (cieplo|zimno) 
+- Temperatura w <star2> wynosi: <call>temp <star2> </call> 
 
-+ czy w * jest (cieplo|zimno) 
-- Temperatura w <star1> wynosi: <call>temp <star1> </call> 
++ czy temperatura (w|na) * [*]
+- Temperatura w <star2> wynosi: <call>temp <star2> </call> 
+
++ czy [*] (cieplo|zimno) (w|na) * 
+- Temperatura w <star3> wynosi: <call>temp <star3> </call> 
+
++ (cieplo|zimno) (w|na) * 
+- Temperatura w <star3> wynosi: <call>temp <star3> </call> 
 
 // PRESSURE
 + [*] (cisnienie|cisnienia) [*] w *
 - Aktualne ciśnienie w <star2> wynosi: <call>pressure <star2> </call> hPa
 
 // PRESSURE
-+ czy w * jest (wysokie|niskie) [*] 
-- Aktualne ciśnienie w <star1> wynosi: <call>pressure <star1> </call> hPa
++ czy w (w|na) jest (wysokie|niskie) [*] 
+- Aktualne ciśnienie w <star2> wynosi: <call>pressure <star2> </call> hPa
 
 + pressure *
 - Aktualne ciśnienie w <star1> wynosi: <call>pressure <star1> </call> hPa
 
 //WEATHER
-+ [*] (pogoda|pogode|pogodowe) [*] w *
++ [*] (pogoda|pogode|pogodowe|pogodnie) [*] (w|na) *
+- Aktualna pogoda w <star3>: <call>weather <star3> </call>
+
++ pogoda (w|na) *
 - Aktualna pogoda w <star2>: <call>weather <star2> </call>
 
-+ pogoda *
-- Aktualna pogoda w <star1>: <call>weather <star1> </call>
++ czy (w|na) * [*] 
+- Aktualna pogoda w <star2>: <call>weather <star2> </call>
+
++ [*] pada [*] (w|na) * [*] 
+- Aktualna pogoda w  <star2> : <call>weather <star2> </call>
+
++ jaki [*] wiatr w *
+- Aktualna pogoda w  <star1> : <call>weather <star1> </call>
 
 //CLOUDS
-+ [*] (zachmurzenie|chmury|pochmurnie|pochmurno) [*] w *
++ [*] (zachmurzenie|chmury|pochmurnie|pochmurno) [*] (w|na) *
+- Aktualne zachmurzenie w <star3> wynosi: <call>clouds <star3> </call>%
+
++ [*] (chmura|chmur|chmurach|chmurami|chmurą|chmurę|chmuro|chmurom|chmury|chmurze) [*] (w|na) *
 - Aktualne zachmurzenie w <star2> wynosi: <call>clouds <star2> </call>%
 
-+ [*] (chmura|chmur|chmurach|chmurami|chmurą|chmurę|chmuro|chmurom|chmury|chmurze) [*] w *
++ [*] (zachmurzenie|zachmurzenia|zachmurzeniach|zachmurzeniami|zachmurzeniem|zachmurzeniom|zachmurzeniu|zachmurzeń|zachmurzyć|niezachmurzeni|niezachmurzenia|niezachmurzeniach|niezachmurzeniami|niezachmurzenie|niezachmurzeniem|niezachmurzeniom|niezachmurzeniu|niezachmurzeń|niezachmurzona|niezachmurzoną|niezachmurzone|niezachmurzonego|niezachmurzonej|niezachmurzonemu|niezachmurzony|niezachmurzonych|niezachmurzonym|niezachmurzonymi|zachmurz|zachmurzą|zachmurzcie|zachmurzcież|zachmurzeni|zachmurzenia|zachmurzeniach|zachmurzeniami|zachmurzenie|zachmurzeniem|zachmurzeniom|zachmurzeniu|zachmurzeń|zachmurzę|zachmurzmy|zachmurzmyż|zachmurzona|zachmurzoną|zachmurzone|zachmurzonego|zachmurzonej|zachmurzonemu|zachmurzono|zachmurzony|zachmurzonych|zachmurzonym|zachmurzonymi|zachmurzy|zachmurzycie|zachmurzyli|zachmurzyliby) [*] w *
 - Aktualne zachmurzenie w <star1> wynosi: <call>clouds <star1> </call>%
 
-+ [*] (zachmurzenie|zachmurzenia|zachmurzeniach|zachmurzeniami|zachmurzeniem|zachmurzeniom|zachmurzeniu|zachmurzeń|zachmurzyć|niezachmurzeni|niezachmurzenia|niezachmurzeniach|niezachmurzeniami|niezachmurzenie|niezachmurzeniem|niezachmurzeniom|niezachmurzeniu|niezachmurzeń|niezachmurzona|niezachmurzoną|niezachmurzone|niezachmurzonego|niezachmurzonej|niezachmurzonemu|niezachmurzony|niezachmurzonych|niezachmurzonym|niezachmurzonymi|zachmurz|zachmurzą|zachmurzcie|zachmurzcież|zachmurzeni|zachmurzenia|zachmurzeniach|zachmurzeniami|zachmurzenie|zachmurzeniem|zachmurzeniom|zachmurzeniu|zachmurzeń|zachmurzę|zachmurzmy|zachmurzmyż|zachmurzona|zachmurzoną|zachmurzone|zachmurzonego|zachmurzonej|zachmurzonemu|zachmurzono|zachmurzony|zachmurzonych|zachmurzonym|zachmurzonymi|zachmurzy|zachmurzycie|zachmurzyli|zachmurzyliby|zachmurzylibyście|zachmurzylibyśmy|zachmurzyliście|zachmurzyliśmy|zachmurzył|zachmurzyła|zachmurzyłaby|zachmurzyłabym|zachmurzyłabyś|zachmurzyłam|zachmurzyłaś|zachmurzyłby|zachmurzyłbym|zachmurzyłbyś|zachmurzyłem|zachmurzyłeś|zachmurzyło|zachmurzyłoby|zachmurzyły|zachmurzyłyby|zachmurzyłybyście|zachmurzyłybyśmy|zachmurzyłyście|zachmurzyłyśmy|zachmurzymy|zachmurzysz|zachmurzywszy|zachmurzże) [*] w *
-- Aktualne zachmurzenie w <star1> wynosi: <call>clouds <star1> </call>%
-
-+ czy w * jest (zachmurzenie|chmury|pochmurnie|pochmurno) [*]
-- Aktualne zachmurzenie w <star1> wynosi: <call>clouds <star1> </call>%
++ czy (w|na) * jest [*] (zachmurzenie|chmury|pochmurnie|pochmurno|chmurami) [*]
+- Aktualne zachmurzenie w <star2> wynosi: <call>clouds <star2> </call>%
 
 + chmury *
 - Aktualne zachmurzenie w <star1> wynosi: <call>clouds <star1> </call>%
+
+
++ a w *
+* <call> input_temp <input> </call> == true => Temperatura w <star1> wynosi: <call>temp <star1> </call> 
+* <call> input_weather <input> </call> == true => Aktualna pogoda w <star1>: <call>weather <star1> </call>
+* <call> input_clouds <input> </call> == true => Aktualne zachmurzenie w <star1> wynosi: <call>clouds <star1> </call>%
+- Niestety już nie pamiętam twojego pytania. Opcja będzie rozwijana! Zapytaj o coś innego :)

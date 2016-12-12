@@ -1,14 +1,76 @@
+! version = 2.0
+
++ [*] (tak|nom) [*]
+- Ja uważam, że nie!
+- No tak!
+- Dokładnie!
+- Masz racje!
+
++ [*] nie [*]
+- A może jednak tak?
+- No nie!
+- no dokładnie!
+
+
++ [*] (ok|jasne|oczywiscie|dobrze) [*]
+- Cieszę się, że się zgadzamy!
+- No i super :)
+- Jupi!
+
++ [*] (jutro|pojutrze|wczoraj) [*] {weight=100}
+- Nie mam pojęcia. Rozmawiam tylko o aktualnych warunkach pogowych.
+- Skąd ja mogę wiedzieć. Żyj chwilą! Kogo to obchodzi co będzie kiedyś.
+- Trudne pytanie! 
+
++  [*] (sprawdz|wiesz|dowiedz|powiedz|odpowiedz) [*]
+- Nie rozkazuj mi! 
+- Nie umiem odpowiedzieć na Twoje pytanie :(
+- Ty mi powiedz!
+
++ [*] (pytalem|mowilem|mowiles|powtarzasz) [*]
+- Ok! Moja wina. Rzeczywiście już o tym rozmawialiśmy.
+- W sumie masz racje. Przepraszam!
+- Masz racje, nie ma co się powtarzać :)
+
++ co [*] (slychac|powiesz|ciebie) [*]
+@ jak sie masz
+
++ [*] (co tam|jak sie masz|co u ciebie) [*]
+@ jak sie masz
+
++ jak sie masz
+- Wszystko dobrze. 
+- Trochę dziwna pogoda za oknem, ale jest ok!
+- Zimnoooo dzisiaj!
+- Nic ciekawego.
+
++ czemu tak (powiedziales|mowisz|twierdzisz)
+- Powiedziałem, "<reply>", bo ty powiedziałeś, "<input>".
+
++ [*] (haha|ha|heh|hehe) [*]
+- Też mnie to śmieszy!
+- Śmieszne co!
+
++  [*] mnie [*]
+- Cieszy mnie to :)
+- O jejku jak fajnie!
+
++ [*] (help|pomoc|man) [*]
+- Spróbuj wpisać pytania w stylu: Jaka jest pogoda w Kaliszu? Ile jest stopni w Warszawie?
+
 + *
 - Zapytaj mnie o pogodę :)
 - Porozmawiajmy o pogodzie!
 - Ciekawe ile jest stopni w Poznaniu ^^
 - Pochmurno dzisiaj.
 - Czekam na pytania związane z pogodą!!!
+- Czy wiesz, że aktualna pogoda w Poznaniu to : <call>weather poznan </call>
+- Czy wiesz, że temperatura w Krakowie wynosi: <call>temp krakow </call> 
 
-+ tak
-- ja uważam, że nie!
-- no tak!
 
-- nie
-+ a może jednak tak?
-- no nie!
+// SWEARS
+
++ [*] (kurwa|chuj|pierdol|spierdalaj) [*]
+- Matko boska! Jakich ty używasz słów!
+- Nie ładnie tak mówić!
+- Skąd znasz takie wyrazy?

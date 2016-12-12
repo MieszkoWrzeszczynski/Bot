@@ -1,4 +1,4 @@
-
+! version = 2.0
 > topic sorry
 
   + [*] (przepraszam|sory|sorry) [*]
@@ -38,7 +38,10 @@
     - <set age=<star>>{random}Czyli to nie przypadek, że poznałem twoją mamę <get age> lat temu! |Trochę się już tułasz po tym pięknym świecie.{/random}{topic=random}
 
 	  + [*] mam # [*]
-	  - {@ <star>}
+	  - {random}To troszkę jest :)|To rzeczwyiście kilka wiosen na karku.|To wcale nie tak dużo!{/random}{topic=random}
+
+    + *
+    - {random}Powiedz mi w końcu ile masz lat.|Dowiem się w końcu ile masz lat?|Ile masz w końcu tych wiosen za sobą?{/random}
 
 < topic
 
