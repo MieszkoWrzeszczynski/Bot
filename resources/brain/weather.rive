@@ -55,7 +55,7 @@
 + [*] (chmura|chmur|chmurach|chmurami|chmurą|chmurę|chmuro|chmurom|chmury|chmurze) [*] (w|na) *
 - Aktualne zachmurzenie w <star2> wynosi: <call>clouds <star2> </call>%
 
-+ [*] (zachmurzenie|zachmurzenia|zachmurzeniach|zachmurzeniami|zachmurzeniem|zachmurzeniom|zachmurzeniu|zachmurzeń|zachmurzyć|niezachmurzeni|niezachmurzenia|niezachmurzeniach|niezachmurzeniami|niezachmurzenie|niezachmurzeniem|niezachmurzeniom|niezachmurzeniu|niezachmurzeń|niezachmurzona|niezachmurzoną|niezachmurzone|niezachmurzonego|niezachmurzonej|niezachmurzonemu|niezachmurzony|niezachmurzonych|niezachmurzonym|niezachmurzonymi|zachmurz|zachmurzą|zachmurzcie|zachmurzcież|zachmurzeni|zachmurzenia|zachmurzeniach|zachmurzeniami|zachmurzenie|zachmurzeniem|zachmurzeniom|zachmurzeniu|zachmurzeń|zachmurzę|zachmurzmy|zachmurzmyż|zachmurzona|zachmurzoną|zachmurzone|zachmurzonego|zachmurzonej|zachmurzonemu|zachmurzono|zachmurzony|zachmurzonych|zachmurzonym|zachmurzonymi|zachmurzy|zachmurzycie|zachmurzyli|zachmurzyliby) [*] w *
++ [*] (zachmurzenie|zachmurzenia|zachmurzeniach|zachmurzeniami|zachmurzeniem) [*] w *
 - Aktualne zachmurzenie w <star1> wynosi: <call>clouds <star1> </call>%
 
 + czy (w|na) * jest [*] (zachmurzenie|chmury|pochmurnie|pochmurno|chmurami) [*]
@@ -66,7 +66,7 @@
 
 
 + a w *
-* <call> input_temp <input> </call> == true => Temperatura w <star1> wynosi: <call>temp <star1> </call> 
-* <call> input_weather <input> </call> == true => Aktualna pogoda w <star1>: <call>weather <star1> </call>
-* <call> input_clouds <input> </call> == true => Aktualne zachmurzenie w <star1> wynosi: <call>clouds <star1> </call>%
+* <call> input_temp <input>    </call> == true => Temperatura w <star1> wynosi: <call>temp <star1> </call> 
+* <call> input_weather <input>   <input5></call> == true => Aktualna pogoda w <star1>: <call>weather <star1> </call>
+* <call> input_clouds <input>    <input5> </call> == true => Aktualne zachmurzenie w <star1> wynosi: <call>clouds <star1> </call>%
 - Niestety już nie pamiętam twojego pytania. Opcja będzie rozwijana! Zapytaj o coś innego :)
