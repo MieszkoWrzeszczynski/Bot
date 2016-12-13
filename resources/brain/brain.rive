@@ -13,33 +13,32 @@
 // USER INTRODUCTION
 
 + [*] (witam|witaj|czesc|hej|hejka|heja|siemasz|siema|elo|siemanko|dzien dobry|siemka|siemson) [*]
-- {random}Dzień dobry|Witam serdecznie|Siemanko!{/random}.{random}Wołają na mnie |Mówią na mnie {/random}
+- {random}Dzień dobry|Witam serdecznie|Siemanko{/random}. {random}Wołają na mnie |Mówią na mnie {/random}
 ^<bot name> <bot surname>. {random}Jesteś ciekaw jaka jest pogoda?
 ^|Interesujesz się dzisiejszą pogodą?|
-^Ładną mamy pogodę dzisiaj.|
-^Ciekawe czy w Poznaniu pada :){/random}
+^Zapytaj mnie ile stopni jest w Kaliszu :)|
+^Ciekawe czy w Poznaniu jest ciepło :){/random}
 
 + [*] (dziekuje|dzieki) [*]
-- Nie ma za co :) Ile masz lat? {topic=get_user_age}
+- Nie ma za co :) Ile masz lat? 
 
 + (jak mam na imie|jakie jest moje imie)
 - masz na imię <get name>. {random}Naprawdę jesteś taki głupiutki czy tylko sprawdzasz czy to ja jestem głupiutki?|Nie wiesz jak masz na imię?{/random}
 
-+ [*] mam lat [*]
-* <get age> == undefined => Jeszcze mi nie powiedziałeś ile masz lat. 
-- Masz <get age> lat.
++ [*] mam # (lat|lata) [*]
+* <get age> == undefined => To troszkę jest!  <set age=<star>>
+* <get age> <> <star> => Prędzej mówiłeś, że urodziłeś się <get age> lat temu.  <set age=<star>>
+- <set age=<star>>{random}Czyli to nie przypadek, że poznałem twoją mamę <get age> lat temu! |Trochę się już tułasz po tym pięknym świecie.|Pamiętam tą noc z Twoją mamą ahhh|Ta noc była wspaniała{/random}{topic=random}
 
-+ mam # lat [*]
-* <get age> != undefined => Prędzej mówiłeś, że urodziłeś się <get age> lat temu.
-- <set age=<star>>{random}Czyli to nie przypadek, że poznałem twoją mamę <get age> lat temu! |Trochę się już tułasz po tym pięknym świecie.{/random}{topic=random}
 
 + [*] mam na imie *
-* <get age> != undefined => Prędzej mówiłeś, że masz na imię <get name>! 
-- <set name=<star>> <get name> {random}To bardzo ładne imię!|brzmi pięknie!{/random}{topic=random}
+* <get name> == undefined => {random} Bardzo ładne imię.|Piękne imię.|Miło mi Cię poznać.{/random} <set name=<star>>
+* <get name> <> <star> => Prędzej mówiłeś, że masz na imię <get name>!  <set name=<star>>
+- <set name=<star>>{random}Już mi mówiłeś jak masz na imię :)|Nie musisz się powtarzać znam Twoję imię.{/random}
 
 + [*] moje imie to *
-* <get age> != undefined => Prędzej mówiłeś, że masz na imię <get name>! 
+* <get age> <> undefined => Prędzej mówiłeś, że masz na imię <get name>! 
  <set name=<star>> <get name> {random}To bardzo ładne imię!|brzmi pięknie!{/random}{topic=random}
 
-+ klamalem
-- W takim razie musisz mnie przeprosić!{topic=sorry}
++ [*] (klamalem|oklamalem) [*]
+- W takim razie musisz mnie przeprosić! {topic=sorry}

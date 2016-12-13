@@ -18,7 +18,7 @@
 - Jupi!
 
 + [*] (jutro|pojutrze|wczoraj) [*] {weight=100}
-- Nie mam pojęcia. Rozmawiam tylko o aktualnych warunkach pogowych.
+- Nie mam pojęcia. Rozmawiam tylko o aktualnych warunkach pogodowych.
 - Skąd ja mogę wiedzieć. Żyj chwilą! Kogo to obchodzi co będzie kiedyś.
 - Trudne pytanie! 
 
@@ -58,6 +58,13 @@
 + [*] (help|pomoc|man) [*]
 - Spróbuj wpisać pytania w stylu: Jaka jest pogoda w Kaliszu? Ile jest stopni w Warszawie?
 
+// SWEARS
++ [*] (kurwa|chuj|pierdol|spierdalaj|dupa|dupie) [*]
+- Matko boska! Jakich ty używasz słów!
+- Nie ładnie tak mówić!
+- Skąd znasz takie wyrazy?
+- Chciałeś być śmieszny ale ci nie wyszło.
+
 + *
 - Zapytaj mnie o pogodę :)
 - Porozmawiajmy o pogodzie!
@@ -66,11 +73,3 @@
 - Czekam na pytania związane z pogodą!!!
 - Czy wiesz, że aktualna pogoda w Poznaniu to : <call>weather poznan </call>
 - Czy wiesz, że temperatura w Krakowie wynosi: <call>temp krakow </call> 
-
-
-// SWEARS
-
-+ [*] (kurwa|chuj|pierdol|spierdalaj) [*]
-- Matko boska! Jakich ty używasz słów!
-- Nie ładnie tak mówić!
-- Skąd znasz takie wyrazy?

@@ -7,7 +7,7 @@ let rs = new RiveScript({
 	utf8: true
 });
 
-rs.unicodePunctuation = new RegExp(/[.,!?;:]/g);
+rs.unicodePunctuation = new RegExp(/[.,!?;:)()]/g);
 
 rs.loadFile([
 	"resources/brain/brain.rive",
@@ -44,9 +44,9 @@ var getWeather = function(location,result){
 	    	if(result == "clouds")
 	    		resolve(data['clouds']['all'])
 	    	else if(result == "pressure")
-	    		resolve(data['main']['pressure'])
+	    		resolve(Math.round(data['main']['pressure']))
 	    	else if(result == "temp")
-	    		resolve(data['main']['temp']+"&deg;C")
+	    		resolve(Math.round(data['main']['temp'])+"&deg;C")
 	    	else 
 	    		resolve(data['weather'][0]['description']+"<img class='weather_icon' src=http://openweathermap.org/img/w/"+weather_icon+".png>")
 	    })
@@ -69,7 +69,14 @@ function listComparable(first,second){
 
 rs.setSubroutine("input_temp",function(rs,args){
 	input_sentences = mergeArgs(args)
-	keys = ["temperature","temperatury","temperatura","temperaturze"]
+	keys = ["temperature","temperatury","temperatura","temperaturze","cieplo","zimno","stopni"]
+
+	return listComparable(keys,[].concat.apply([], input_sentences))
+});
+
+rs.setSubroutine("input_pressure",function(rs,args){
+	input_sentences = mergeArgs(args)
+	keys = ["cisnienie","cisnienia","wysokie","niskie"]
 
 	return listComparable(keys,[].concat.apply([], input_sentences))
 });
@@ -80,6 +87,7 @@ rs.setSubroutine("input_weather",function(rs,args){
 
 	return listComparable(keys,[].concat.apply([], input_sentences))
 });
+
 
 rs.setSubroutine("input_clouds",function(rs,args){
 	input_sentences = mergeArgs(args)
@@ -158,6 +166,7 @@ function sendMessage () {
 
 	try {
 		rs.replyAsync("soandso", text, this).then(function(reply) {
+
 			$("#dialogue").append("<div class='chat_msg'><strong class='bot'>WeatherBot: </strong>" + reply + "</div>");
 
 		    $('#dialogue').scrollTop($('#dialogue')[0].scrollHeight);

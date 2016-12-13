@@ -1,7 +1,7 @@
 ! version = 2.0
 
 + [*] ile masz lat [*]
-- Mam <bot age> lat. A ty?{topic=get_user_age}
+- Mam <bot age> lat. A ty?
 
 + [*] twoje imie [*]
 - Mam na imię <bot name>

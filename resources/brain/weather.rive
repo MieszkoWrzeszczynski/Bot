@@ -1,24 +1,24 @@
 ! version = 2.0
 // TEMP
-+ [*] (temperature|temperatury|temperatura|temperaturze) [*] (w|na) *
++ [*] (temperature|temperatury|temperatura|temperaturze) [*] (w|na|we) *
 - Temperatura w <star3> wynosi: <call>temp <star3> </call> 
 
-+ [*] stopni [*] (w|na) *
++ [*] stopni [*] (w|na|we) *
 - Temperatura w <star2> wynosi: <call>temp <star2> </call> 
 
-+ temperatura  (w|na) *
++ temperatura  (w|na|we) *
 - Temperatura w <star1> wynosi: <call>temp <star1> </call> 
 
-+ czy (w|na) * jest (cieplo|zimno) 
++ czy (w|na|we) * jest (cieplo|zimno) 
 - Temperatura w <star2> wynosi: <call>temp <star2> </call> 
 
-+ czy temperatura (w|na) * [*]
++ czy temperatura (w|na|we) * [*]
 - Temperatura w <star2> wynosi: <call>temp <star2> </call> 
 
-+ czy [*] (cieplo|zimno) (w|na) * 
++ czy [*] (cieplo|zimno) (w|na|we) * 
 - Temperatura w <star3> wynosi: <call>temp <star3> </call> 
 
-+ (cieplo|zimno) (w|na) * 
++ (cieplo|zimno) (w|na|we) * 
 - Temperatura w <star3> wynosi: <call>temp <star3> </call> 
 
 // PRESSURE
@@ -26,39 +26,39 @@
 - Aktualne ciśnienie w <star2> wynosi: <call>pressure <star2> </call> hPa
 
 // PRESSURE
-+ czy w (w|na) jest (wysokie|niskie) [*] 
++ czy w (w|na|we) jest (wysokie|niskie)  [*] {weight=100}
 - Aktualne ciśnienie w <star2> wynosi: <call>pressure <star2> </call> hPa
 
 + pressure *
 - Aktualne ciśnienie w <star1> wynosi: <call>pressure <star1> </call> hPa
 
 //WEATHER
-+ [*] (pogoda|pogode|pogodowe|pogodnie) [*] (w|na) *
++ [*] (pogoda|pogode|pogodowe|pogodnie) [*] (w|na|we) *
 - Aktualna pogoda w <star3>: <call>weather <star3> </call>
 
-+ pogoda (w|na) *
++ pogoda (w|na|we) *
 - Aktualna pogoda w <star2>: <call>weather <star2> </call>
 
-+ czy (w|na) * [*] 
++ czy (w|na|we) * [*] 
 - Aktualna pogoda w <star2>: <call>weather <star2> </call>
 
-+ [*] pada [*] (w|na) * [*] 
++ [*] pada [*] (w|na|we) * [*] 
 - Aktualna pogoda w  <star2> : <call>weather <star2> </call>
 
 + jaki [*] wiatr w *
 - Aktualna pogoda w  <star1> : <call>weather <star1> </call>
 
 //CLOUDS
-+ [*] (zachmurzenie|chmury|pochmurnie|pochmurno) [*] (w|na) *
++ [*] (zachmurzenie|chmury|pochmurnie|pochmurno) [*] (w|na|we) *
 - Aktualne zachmurzenie w <star3> wynosi: <call>clouds <star3> </call>%
 
-+ [*] (chmura|chmur|chmurach|chmurami|chmurą|chmurę|chmuro|chmurom|chmury|chmurze) [*] (w|na) *
++ [*] (chmura|chmur|chmurach|chmurami|chmurą|chmurę|chmuro|chmurom|chmury|chmurze) [*] (w|na|we) *
 - Aktualne zachmurzenie w <star2> wynosi: <call>clouds <star2> </call>%
 
 + [*] (zachmurzenie|zachmurzenia|zachmurzeniach|zachmurzeniami|zachmurzeniem) [*] w *
 - Aktualne zachmurzenie w <star1> wynosi: <call>clouds <star1> </call>%
 
-+ czy (w|na) * jest [*] (zachmurzenie|chmury|pochmurnie|pochmurno|chmurami) [*]
++ czy (w|na|we) * jest [*] (zachmurzenie|chmury|pochmurnie|pochmurno|chmurami) [*]
 - Aktualne zachmurzenie w <star2> wynosi: <call>clouds <star2> </call>%
 
 + chmury *
@@ -66,7 +66,8 @@
 
 
 + a w *
-* <call> input_temp <input>    </call> == true => Temperatura w <star1> wynosi: <call>temp <star1> </call> 
-* <call> input_weather <input>   <input5></call> == true => Aktualna pogoda w <star1>: <call>weather <star1> </call>
-* <call> input_clouds <input>    <input5> </call> == true => Aktualne zachmurzenie w <star1> wynosi: <call>clouds <star1> </call>%
-- Niestety już nie pamiętam twojego pytania. Opcja będzie rozwijana! Zapytaj o coś innego :)
+* <call> input_temp <input>  </call> == true => Temperatura w <star1> wynosi: <call>temp <star1> </call> 
+* <call> input_weather <input> </call> == true => Aktualna pogoda w <star1>: <call>weather <star1> </call>
+* <call> input_pressure <input> </call> == true => Aktualne ciśnienie w <star1> wynosi: <call>pressure <star1> </call> hPa
+* <call> input_clouds <input>  </call> == true => Aktualne zachmurzenie w <star1> wynosi: <call>clouds <star1> </call>%
+- Jestem jeszcze za głupi żeby zapamiętać 2 zdania wstecz. Przepraszam.
